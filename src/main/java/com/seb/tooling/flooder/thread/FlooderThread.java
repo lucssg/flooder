@@ -2,11 +2,15 @@ package com.seb.tooling.flooder.thread;
 
 import com.seb.tooling.flooder.constant.FlooderConstants;
 import com.seb.tooling.flooder.http.HttpRequester;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by caskdor on 03/07/16.
  */
 public class FlooderThread extends Thread {
+
+    private static final Logger LOG = LoggerFactory.getLogger(FlooderThread.class);
 
     private String url;
     private int loop = 1;
@@ -20,20 +24,21 @@ public class FlooderThread extends Thread {
     }
 
     @Override
-    public synchronized void start() {
-        super.start();
-    }
-
-    @Override
     public void run() {
+        LOG.info("{} runs !!", getName());
         super.run();
         int count = 0;
         while (count < loop)  {
-            System.out.println(requester.request(url));
+            LOG.info("Loop: {} - {}", getName(), count);
+            ++count;
+            String response = requester.request(url);
+            LOG.debug(response);
             try {
                 Thread.sleep(FlooderConstants.SLEEPING);
             } catch (InterruptedException e) {
-                e.printStackTrace();
+                LOG.error("Sleeping Failed !!", e);
+                // Do nothing
+                // POC style
             }
         }
     }
