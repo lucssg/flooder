@@ -32,7 +32,7 @@ public class FlooderThread extends Thread {
             LOG.info("Loop: {} - {}", getName(), count);
             ++count;
             String response = requester.request(url);
-            LOG.debug(response);
+            LOG.info(response);
             try {
                 Thread.sleep(FlooderConstants.SLEEPING);
             } catch (InterruptedException e) {

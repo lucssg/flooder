@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
+import java.net.InetSocketAddress;
+import java.net.Proxy;
 import java.net.URL;
 
 /**
@@ -11,13 +13,15 @@ import java.net.URL;
  */
 public class HttpRequester {
 
+    private static final Proxy proxy = new Proxy(Proxy.Type.HTTP, new InetSocketAddress("gateway.seb.zscaler.net", 9480));
+
     public String request(String requestUrl) {
         HttpURLConnection connection = null;
         URL url;
         StringBuilder response = null;
         try {
             url = new URL(requestUrl);
-            connection = (HttpURLConnection) url.openConnection();
+            connection = (HttpURLConnection) url.openConnection(proxy);
 
             BufferedReader br = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             response = new StringBuilder();

@@ -5,11 +5,11 @@ package com.seb.tooling.flooder.constant;
  */
 public final class FlooderConstants {
 
-    public static final int LOOP = 20;
-    public static final int POOL_SIZE = 20;
+    public static final int LOOP = 10000;
+    public static final int POOL_SIZE = 100;
     public static final int SLEEPING = 100;
-    public static final String URL = "http://cloud.weix.fr";
+    public static final String URL = "http://dev-eb-challenge-dev.eu-west-1.elasticbeanstalk.com/flood/10000";
 
     public static final String THREAD_NAME = "Thread_";
-    public static final long LONG_SLEEPING = 200;
+    public static final long THREAD_START_SLEEPING = 5000;
 }

@@ -1,7 +1,6 @@
 package com.seb.tooling.flooder;
 
 import com.seb.tooling.flooder.constant.FlooderConstants;
-import com.seb.tooling.flooder.http.HttpRequester;
 import com.seb.tooling.flooder.thread.FlooderThread;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,7 +20,7 @@ public class App {
             FlooderThread thread = new FlooderThread(FlooderConstants.THREAD_NAME + i, FlooderConstants.URL, FlooderConstants.LOOP);
             thread.start();
             try {
-                Thread.sleep(FlooderConstants.LONG_SLEEPING);
+                Thread.sleep(FlooderConstants.THREAD_START_SLEEPING);
             } catch (InterruptedException e) {
                 LOG.error("Erreur de la mise en attente", e);
                 // do nothing
