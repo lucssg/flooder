@@ -2,3 +2,4 @@ flooder.iml
 .idea
 out
 target
+*.log
